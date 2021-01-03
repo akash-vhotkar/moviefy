@@ -1,11 +1,32 @@
-#moviefy
->thise is project is help us the people  to get more detailed information about the any movies
+# movify
+about project
+> movify help to get detailed information about the movies like ratings,about movie etc
 
 
->project done by using 
-*html
-*css
-*javascript
-*axios
-*jquery
->api used in thise project is  omdb api
+
+> in thise project omdb api 
+
+
+steps to setup the project
+> * get api key from omdb
+>  * replace axios get url with ur url 
+>  * project will setup seccusfully 
+
+
+
+
+
+project is made by using
+  
+  * html
+  * css
+  * javascript
+  * axios
+  * bootstrap
+  * jquery
+
+
+> to get the project [click here](https://github.com/akash-vhotkar/moviefy/tree/master)
+
+
+
