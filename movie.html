@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>MovieInfo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+</head>
+<style>
+    body {
+        background-color: black;
+        color: white;
+    }
+</style>
+
+<body>
+    <nav class="navbar navbar-dark">
+        <div class="container">
+            <div class="navbar-header">
+                <p class="navbar-brand">MovieInfo</p>
+            </div>
+        </div>
+    </nav>
+    <hr>
+
+    <div class="container bg-dark">
+        <div id="movie" class="well">
+
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js"
+        integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        function getMovie() {
+            let movieid = sessionStorage.getItem('movieId')
+            console.log(movieid);
+            axios.get('http://www.omdbapi.com/?apikey=1d2c9f75&i=' + movieid)
+                .then((response) => {
+
+                    console.log(response.data);
+                    let movie = response.data;
+
+                    let output = `
+        <div class="row">
+          <div class="col-md-4">
+            <img src="${movie.Poster}" class="thumbnail">
+          </div>
+          <div class="col-md-8 ">
+            <h2>${movie.Title}</h2>
+            <ul class="list-group ">
+              <li class="list-group-item text-dark"><strong>Genre:</strong> ${movie.Genre}</li>
+              <li class="list-group-item text-dark"><strong>Released:</strong> ${movie.Released}</li>
+              <li class="list-group-item text-dark"><strong>Rated:</strong> ${movie.Awards}</li>
+              <li class="list-group-item text-dark"><strong>IMDB Rating:</strong> ${movie.imdbRating}</li>
+              <li class="list-group-item text-dark"><strong>Director:</strong> ${movie.Director}</li>
+              <li class="list-group-item text-dark"><strong>Writer:</strong> ${movie.Writer}</li>
+              <li class="list-group-item text-dark"><strong>Actors:</strong> ${movie.Actors}</li>
+            </ul>
+          </div>
+        </div>
+        <div class="row">
+          <div class="well">
+            <h3>Plot</h3>
+            ${movie.Plot}
+            <hr>
+            <a href="http://imdb.com/title/${movie.imdbID}" target="_blank" class="btn btn-primary">View IMDB</a>
+            <a href="index.html" class="btn btn-default">Go Back To Search</a>
+          </div>
+        </div>
+      `;
+
+                    $('#movie').html(output);
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+
+        }
+        getMovie();
+
+
+    </script>
+</body>
+
+</html>
