@@ -1,4 +1,4 @@
-# movify
+# Movie’s Now Web Application
 about project
 > movify help to get detailed information about the movies like ratings,about movie etc
 
